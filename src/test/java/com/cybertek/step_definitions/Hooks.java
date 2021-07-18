@@ -1,10 +1,10 @@
 package com.cybertek.step_definitions;
-
-
+import com.cybertek.utilities.BrowserUtils1;
 import com.cybertek.utilities.Driver;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 
 public class Hooks {
     //import from io.cucumber.java
@@ -17,7 +17,7 @@ public class Hooks {
 
     @After
     public void tearDownScenario(Scenario scenario) {
-        System.out.println("<<<Tear down steps are being applied>>>");
+        //System.out.println("<<<Tear down steps are being applied>>>");
 
         //if scenario fails take a screenshot
        // scenario.isFailed();
@@ -26,17 +26,18 @@ public class Hooks {
             byte[] screenshot = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png",scenario.getName());
         }
+        BrowserUtils1.sleep(2);
         Driver.closeDriver();
     }
 
 
 
-    @BeforeStep
+    @BeforeStep("@login")
     public void setupStep(){
         System.out.println("<<<<setup applying for each step>>>>");
     }
 
-    @AfterStep
+    @AfterStep("@login")
     public void afterStep() {
         System.out.println("<<<<teardown applying for each step>>>>>");
     }
