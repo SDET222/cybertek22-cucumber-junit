@@ -25,9 +25,9 @@ Feature: Wikipedia search functionality
     Then User sees "<expectedTitle>" is in the wiki title
 
     Examples: Search terms we are going to use in this template is as below
-      | searchValue   | expectedMainHeader | expectedTitle  |
-      | Steve Jobs    | Steve Jobs         | Steve Jobs     |
-      | Albert Einstein     | Albert Einstein        | Albert Einstein         |
-      | Conor McGregor  | Conor McGregor    | Conor McGregor |
+      | searchValue     | expectedMainHeader | expectedTitle   |
+      | Steve Jobs      | Steve Jobs         | Steve Jobs      |
+      | Albert Einstein | Albert Einstein    | Albert Einstein |
+      | Conor McGregor  | Conor McGregor     | Conor McGregor  |
 
 
