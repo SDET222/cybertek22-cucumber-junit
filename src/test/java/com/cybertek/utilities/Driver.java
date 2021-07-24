@@ -17,37 +17,37 @@ public class Driver {
     // making driver instance private so that is not reachable from outside of the class
     //We make it static because we want it to run before everything else and
     // we will use it in a static method
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
     //creating reusable utility method that will return same 'diver' instance every time we call
     public static WebDriver getDriver() {
 
-        if(driver==null) {
+        if(driverPool.get()==null) {
 
             String browserType = ConfigurationReader.getProperty("browser");
             switch(browserType) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new EdgeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
             }
         }
         // sane driver instance will be returned every time we call Driver.getDriver() method
-        return driver;
+        return driverPool.get();
     }
 
     /**
@@ -55,9 +55,9 @@ public class Driver {
      * Null or not null it must exist.
      */
     public static void closeDriver() {
-        if(driver!=null) {
-            driver.quit();
-            driver=null;
+        if(driverPool.get()!=null) {
+            driverPool.get().quit();
+            driverPool.remove();
         }
 
 
