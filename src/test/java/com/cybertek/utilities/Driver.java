@@ -23,6 +23,10 @@ public class Driver {
 
         if(driverPool.get()==null) {
 
+            synchronized (Driver.class){ //creating order between threads
+
+
+
             String browserType = ConfigurationReader.getProperty("browser");
             switch(browserType) {
                 case "chrome":
@@ -43,8 +47,10 @@ public class Driver {
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
+            }
 
             }
+
         }
         // sane driver instance will be returned every time we call Driver.getDriver() method
         return driverPool.get();
