@@ -64,7 +64,7 @@ public class ExcelRead {
 
         for (int rowNum = 0; rowNum < usedRows; rowNum++) {
             if(sheet.getRow(rowNum).getCell(0).toString().equals("Steven")){
-                System.out.println("Stevens JOB_ID is " + sheet.getRow(rowNum).getCell(2));
+                System.out.println("Steven's JOB_ID is " + sheet.getRow(rowNum).getCell(2));
             }
         }
 
