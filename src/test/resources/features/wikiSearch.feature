@@ -1,3 +1,4 @@
+@smoke
 Feature: Wikipedia search functionality
   As a user, I should be able to search terms and see relevant information
   Case: Search for "Steve Jobs", the title, the header, and the image header
