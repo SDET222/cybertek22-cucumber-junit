@@ -1,12 +1,17 @@
 package com.cybertek.step_definitions;
 
 import com.cybertek.pages.SmartBear_OrderPage;
+import com.cybertek.utilities.BrowserUtils1;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SmartBear_StepDefinitions {
@@ -51,14 +56,20 @@ public class SmartBear_StepDefinitions {
 
     }
 
-    @Then("User verifies John Wick is in the list")
-    public void user_verifies_john_wick_is_in_the_list() {
+
+
+    @Then("User verifies {string} is in the list")
+    public void userVerifiesIsInTheList(String name) {
         page.allOrdersBtn.click();
 
+        List<String> allNamesText = new ArrayList<>();
+        for (WebElement each : page.allNames) {
+            allNamesText.add(each.getText());
+        }
+
+        System.out.println(allNamesText);
+        BrowserUtils1.sleep(2);
+        Assert.assertTrue(allNamesText.contains(name));
 
     }
-
-
-
-
 }

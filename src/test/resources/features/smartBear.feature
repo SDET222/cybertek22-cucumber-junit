@@ -19,4 +19,4 @@ Feature: SmartBear order functionality
       | expiration date  | 12/22            |
 
     And User click process button
-    Then User verifies John Wick is in the list
+    Then User verifies "John Wick" is in the list

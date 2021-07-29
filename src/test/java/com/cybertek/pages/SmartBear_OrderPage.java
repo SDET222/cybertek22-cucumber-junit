@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class SmartBear_OrderPage {
     public SmartBear_OrderPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -57,6 +59,12 @@ public class SmartBear_OrderPage {
     public WebElement processBtn;
 
 
-    @FindBy (xpath = "a[.='View all orders']")
+    @FindBy (xpath = "//a[.='View all orders']")
     public WebElement allOrdersBtn;
+
+
+    @FindBy (xpath = "//table[@class='SampleTable']//td[2]")
+    public List<WebElement> allNames;
+
+
 }
