@@ -41,12 +41,12 @@ public class SmartBear_StepDefinitions {
         page.customerName.sendKeys(data.get("customer name"));
         page.street.sendKeys(data.get("street"));
         page.city.sendKeys(data.get("city"));
+        page.state.sendKeys("state");
         page.zip.sendKeys(data.get("zipCode"));
         page.visa.sendKeys(data.get("Card type"));
         page.visa.click();
         page.cardNumber.sendKeys(data.get("card number"));
         page.expirationDate.sendKeys(data.get("expiration date"));
-
 
 
     }
